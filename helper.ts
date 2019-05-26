@@ -8,13 +8,18 @@ export function alterUserListControl(id: any, userList: IUser[]) {
   )
 }
 
+export function isUserControl(user: IUser, userList: IUser[]) {
+  console.log(userList.length <= 0)
+  return { ...user, control: !user.isSchedule && userList.length <= 0 }
+}
+
 export function isUserAccess(user: IUser, id: string): IUser {
   const { isSchedule } = user;
   const notScheduleName = `Guest-${id.slice(0, 6)}`;
   const isScheduleUser = () => isSchedule ? user.name : notScheduleName;
   const userMount = {  
-    id,
     ...user,
+    id,
     name: isScheduleUser()
   }
 
