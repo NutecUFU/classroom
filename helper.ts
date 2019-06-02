@@ -8,7 +8,15 @@ export function alterUserListControl(id: any, userList: IUser[]) {
   )
 }
 
-export function isUserControl(user: IUser, userList: IUser[]) {
+export function getIndexNextUser(list: IUser[], id: string) {
+  const nextIndex = list.findIndex((user: IUser) => user.id == id) + 1;
+  console.log('NEXT INDEX', nextIndex);
+  console.log('USER_LIST', list);
+  console.log('NEXT_USER_IN_LIST', list[nextIndex]);
+  return nextIndex <= list.length - 1 ? nextIndex : 0;
+}
+
+export function isFirstUserControl(user: IUser, userList: IUser[]) {
   console.log(userList.length <= 0)
   return { ...user, control: !user.isSchedule && userList.length <= 0 }
 }
